@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>ceshi</title>
+</head>
+
+<body>
+ceshi
+</body>
+<script src="../../js/jquery.js" th:src="@{/js/jquery.js}"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="../../js/wechatJSSDK.js" th:src="@{/js/wechatJSSDK.js}"></script>
+<script type="text/javascript">
+    function jssdk() {
+        $.ajax({
+            url : "/wechatconfig/jssdk",
+            type : 'post',
+            dataType : 'json',
+            contentType : "application/x-www-form-urlencoded; charset=utf-8",
+            data : {
+                'url' : location.href.split('#')[0]
+            },
+            success : function(data) {
+            	$("body").append(JSON.stringify(data));
+                wx.config({
+                    debug : true,
+                    appId : data.appId,
+                    timestamp : data.timestamp,
+                    nonceStr : data.nonceStr,
+                    signature : data.signature,
+                    jsApiList : ['scanQRCode']
+                    	/* [ 'checkJsApi', 'onMenuShareTimeline',
+                            'onMenuShareAppMessage', 'onMenuShareQQ',
+                            'onMenuShareWeibo', 'hideMenuItems',
+                            'showMenuItems', 'hideAllNonBaseMenuItem',
+                            'showAllNonBaseMenuItem', 'translateVoice',
+                            'startRecord', 'stopRecord', 'onRecordEnd',
+                            'playVoice', 'pauseVoice', 'stopVoice',
+                            'uploadVoice', 'downloadVoice', 'chooseImage',
+                            'previewImage', 'uploadImage', 'downloadImage',
+                            'getNetworkType', 'openLocation', 'getLocation',
+                            'hideOptionMenu', 'showOptionMenu', 'closeWindow',
+                            'scanQRCode', 'chooseWXPay',
+                            'openProductSpecificView', 'addCard', 'chooseCard',
+                            'openCard' ] */
+                });
+                wx.ready(function () {
+                	 console.log('调用成功');
+                	 //checkJsApifunction();
+                	 //onMenuShareAppMessagefunction();
+                	 //getNetworkTypefunction();
+                	 //openLocationfunction();
+                	 //getLocationfunction();
+                	 scanQRCode();
+                });
+                wx.error(function(res){
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                    $("body").append(JSON.stringify(res));
+                });
+            }
+        });
+    }
+
+    function isWeiXin5() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        var reg = /MicroMessenger\/[5-9]/i;
+        return reg.test(ua);
+    }
+
+    window.onload = function() {
+        //     if (isWeiXin5() == false) {
+        //           alert("您的微信版本低于 5.0，无法使用微信支付功能，请先升级！");
+        //         }
+        jssdk();
+        location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx20620a154c55955f&redirect_uri=http://sydeceshi.imwork.net/weixinOauth&response_type=code&scope=snsapi_userinfo&state=2#wechat_redirect";
+    };
+    
+
+
+</script>
+</html>
