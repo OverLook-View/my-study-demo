@@ -17,7 +17,6 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
 
 public class XmlUtil {
 	
-	@SuppressWarnings("unused")
 	private static XStream xstream = new XStream(new XppDriver() {
 		public HierarchicalStreamWriter createWriter(Writer out) {
 			return new PrettyPrintWriter(out) {

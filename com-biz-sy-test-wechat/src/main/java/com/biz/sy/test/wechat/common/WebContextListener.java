@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebContextListener implements ApplicationListener<ContextRefreshedEvent> {
 
-	private static final long serialVersionUID = 1L;
-
 	@Autowired
 	private WeChatTask weChatTask;
 

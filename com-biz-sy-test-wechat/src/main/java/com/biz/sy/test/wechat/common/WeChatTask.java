@@ -36,7 +36,8 @@ public class WeChatTask {
 
 	/**
 	 * @Description: 任务执行体
-	 * @param @throws Exception
+	 * @param @throws
+	 *            Exception
 	 * @author dapengniao
 	 * @date 2016 年 3 月 10 日 下午 2:04:37
 	 */
@@ -51,7 +52,8 @@ public class WeChatTask {
 		String access_token = JSONObject.fromObject(jstoken).getString("access_token"); // 获取到token并赋值保存
 		if (access_token != null) {
 			this.access_token = access_token;
-			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "token 为==============================" + access_token);
+			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
+					+ "token 为==============================" + access_token);
 		} else {
 			System.out.println("jstoken=" + jstoken + "\ntokenUrl=" + tokenUrl + "\nparams=" + params);
 		}
@@ -70,4 +72,21 @@ public class WeChatTask {
 			System.out.println("jsticket=" + jsticket);
 		}
 	}
+
+	public static String getAccess_token() {
+		return access_token;
+	}
+
+	public static void setAccess_token(String access_token) {
+		WeChatTask.access_token = access_token;
+	}
+
+	public static String getJsapi_ticket() {
+		return jsapi_ticket;
+	}
+
+	public static void setJsapi_ticket(String jsapi_ticket) {
+		WeChatTask.jsapi_ticket = jsapi_ticket;
+	}
+
 }

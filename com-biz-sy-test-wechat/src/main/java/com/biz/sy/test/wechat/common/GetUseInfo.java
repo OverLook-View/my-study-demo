@@ -22,7 +22,7 @@ import com.biz.sy.test.wechat.utils.HttpUtils;
 public class GetUseInfo {
 
 	@Autowired
-	private WeChatTask weChatTask;
+//	private WeChatTask weChatTask;
 
 	/**
 	 * @Description: 通过 openid 获取用户微信信息
