@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.cookie.BasicClientCookie;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
@@ -41,10 +48,13 @@ public class HttpUtils {
 
 	/**
 	 * @Description: http get 请求共用方法
-	 * @param @param reqUrl
-	 * @param @param params
+	 * @param @param
+	 *            reqUrl
+	 * @param @param
+	 *            params
 	 * @param @return
-	 * @param @throws Exception
+	 * @param @throws
+	 *            Exception
 	 * @author dapengniao
 	 * @date 2016 年 3 月 10 日 下午 3:57:39
 	 */
@@ -75,10 +85,13 @@ public class HttpUtils {
 
 	/**
 	 * @Description: http post 请求共用方法
-	 * @param @param reqUrl
-	 * @param @param params
+	 * @param @param
+	 *            reqUrl
+	 * @param @param
+	 *            params
 	 * @param @return
-	 * @param @throws Exception
+	 * @param @throws
+	 *            Exception
 	 * @author dapengniao
 	 * @date 2016 年 3 月 10 日 下午 3:57:53
 	 */
@@ -121,13 +134,45 @@ public class HttpUtils {
 		}
 	}
 
+	public static String httpPostWithJSON(String url, String json) throws Exception {
+		// 将JSON进行UTF-8编码,以便传输中文
+		String encoderJson = URLEncoder.encode(json, HTTP.UTF_8);
+		CloseableHttpClient httpClient = null;
+		try {
+			httpClient = HttpClients.createDefault();
+			HttpPost httpPost = new HttpPost(url);
+			httpPost.addHeader(HTTP.CONTENT_TYPE, "application/json");
+			BasicCookieStore cookieStore = new BasicCookieStore();
+			Cookie cookie=new BasicClientCookie("name", "value");
+			cookieStore.addCookie(cookie);
+			CloseableHttpClient build = HttpClients.custom().setDefaultCookieStore(cookieStore).build();
+
+			StringEntity se = new StringEntity(encoderJson);
+			se.setContentType("text/json");
+			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+			httpPost.setEntity(se);
+			HttpResponse response = httpClient.execute(httpPost);
+			InputStream inputStream = response.getEntity().getContent();
+			String jsonString = getJsonStringFromGZIP(inputStream);
+			return jsonString;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			httpClient.close();
+		}
+	}
+
 	/**
 	 * @Description: http post 请求 json 数据
-	 * @param @param urls
-	 * @param @param params
+	 * @param @param
+	 *            urls
+	 * @param @param
+	 *            params
 	 * @param @return
-	 * @param @throws ClientProtocolException
-	 * @param @throws IOException
+	 * @param @throws
+	 *            ClientProtocolException
+	 * @param @throws
+	 *            IOException
 	 * @author dapengniao
 	 * @date 2016 年 3 月 10 日 下午 3:58:15
 	 */
@@ -148,8 +193,10 @@ public class HttpUtils {
 
 	/**
 	 * @Description: http 请求发送 xml 内容
-	 * @param @param urlStr
-	 * @param @param xmlInfo
+	 * @param @param
+	 *            urlStr
+	 * @param @param
+	 *            xmlInfo
 	 * @param @return
 	 * @author dapengniao
 	 * @date 2016 年 3 月 10 日 下午 3:58:32
@@ -196,7 +243,7 @@ public class HttpUtils {
 			int headerData = getShort(header);
 			// Gzip 流 的前两个字节是 0x1f8b
 			if (result != -1 && headerData == 0x1f8b) {
-				// LogUtil.i("HttpTask", " use GZIPInputStream  ");
+				// LogUtil.i("HttpTask", " use GZIPInputStream ");
 				is = new GZIPInputStream(bis);
 			} else {
 				// LogUtil.d("HttpTask", " not use GZIPInputStream");
@@ -238,7 +285,7 @@ public class HttpUtils {
 		for (String key : set) {
 			query.append(String.format("%s=%s&", key, params.get(key)));
 		}
-		String string = query.toString().substring(0,query.toString().lastIndexOf('&'));
+		String string = query.toString().substring(0, query.toString().lastIndexOf('&'));
 		return reqUrl + "?" + string.trim();
 	}
 }
