@@ -24,7 +24,8 @@ public class SocketServerDemo {
 		Socket socket = serverSocket.accept();
 		// receiveString(socket);
 //		receiveKeyInToFile(socket);
-		receiveFile(socket);
+//		receiveFile(socket);
+		recerveHttpRequest(socket);
 		socket.close();
 		serverSocket.close();
 	}
@@ -58,5 +59,21 @@ public class SocketServerDemo {
 		while ((line = reader.readLine()) != null) {
 			System.out.println(line);
 		}
+	}
+	
+	private static void recerveHttpRequest(Socket socket) throws Exception {
+		InputStream inputStream = socket.getInputStream();
+		byte[] buf = new byte[1024];
+		int len = inputStream.read(buf);
+		System.out.println(new String(buf, 0, len));
+		OutputStream outputStream = socket.getOutputStream();
+//		PrintWriter pw = new PrintWriter(outputStream, true);
+//		pw.println("GET /hello/meinv.html HTTP/1.1");
+//		pw.println("Host: 10.1.0.28:12121");
+//		pw.println("Connection: keep-alive");
+//		pw.println("Accept-Language: zh-CN,zh;q=0.8");
+//		pw.println();
+
+		outputStream.write("<font color='RED' size='30'>hello,welcome to my First webapp</font>".getBytes());
 	}
 }
