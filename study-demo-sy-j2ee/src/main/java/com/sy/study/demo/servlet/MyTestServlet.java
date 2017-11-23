@@ -2,6 +2,7 @@ package com.sy.study.demo.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,10 +29,13 @@ public class MyTestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter writer = response.getWriter();
-		ServletConfig servletConfig = this.getServletConfig();
-		writer.append("");
+		Enumeration<String> headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()){
+			String key = headerNames.nextElement();
+			String value = request.getHeader(key);
+			response.getWriter().append("<p>"+"key:"+key+",value:"+value+"</p>");
+		}
+		response.getWriter().append("end123");
 	}
 
 	/**
