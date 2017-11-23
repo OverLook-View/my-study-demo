@@ -2,6 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>study-demo-sy-j2ee</display-name>
   <welcome-file-list>
+    <welcome-file>/MyTestServlet</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -10,7 +11,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description></description>
     <display-name>MyTestServlet</display-name>
     <servlet-name>MyTestServlet</servlet-name>
     <servlet-class>com.sy.study.demo.servlet.MyTestServlet</servlet-class>
@@ -18,5 +18,29 @@
   <servlet-mapping>
     <servlet-name>MyTestServlet</servlet-name>
     <url-pattern>/MyTestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DispatcherTestServlet</servlet-name>
+    <servlet-class>com.sy.study.demo.servlet.DispatcherTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DispatcherTestServlet</servlet-name>
+    <url-pattern>/DispatcherTestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RedirectTestServlet</servlet-name>
+    <servlet-class>com.sy.study.demo.servlet.RedirectTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RedirectTestServlet</servlet-name>
+    <url-pattern>/RedirectTestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RefreshTestServlet</servlet-name>
+    <servlet-class>com.sy.study.demo.servlet.RefreshTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RefreshTestServlet</servlet-name>
+    <url-pattern>/RefreshTestServlet</url-pattern>
   </servlet-mapping>
 </web-app>
