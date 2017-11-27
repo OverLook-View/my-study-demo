@@ -43,4 +43,12 @@
     <servlet-name>RefreshTestServlet</servlet-name>
     <url-pattern>/RefreshTestServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CookieTestServlet</servlet-name>
+    <servlet-class>com.sy.study.demo.servlet.CookieTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CookieTestServlet</servlet-name>
+    <url-pattern>/CookieTestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
