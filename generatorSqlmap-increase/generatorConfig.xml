@@ -68,7 +68,7 @@
 
 
 		<!-- targetProject:生成PO类的位置 -->
-		<javaModelGenerator targetPackage="com.bizideal.whoami.vote.entity"
+		<javaModelGenerator targetPackage="com.bizideal.whoami.certification.entity"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
@@ -84,13 +84,20 @@
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.bizideal.whoami.vote.mapper" 
+			targetPackage="com.bizideal.whoami.certification.mapper" 
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
-		<table schema="" tableName="meeting_dynamic" domainObjectName="MeetingDynamic" 
+		<table schema="" tableName="org_department_info" domainObjectName="OrgDepartmentInfo" 
+			enableCountByExample="false" 
+			enableUpdateByExample="false" 
+			enableDeleteByExample="false" 
+			enableSelectByExample="false" 
+			selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="org_department_user_link" domainObjectName="OrgDepartmentUserLink" 
 			enableCountByExample="false" 
 			enableUpdateByExample="false" 
 			enableDeleteByExample="false" 
