@@ -1,4 +1,4 @@
-package com.sy.study.springboot.demo.springbootdemo;
+package com.sy.study.springboot.demo;
 
 import org.junit.Before;
 import org.junit.Test;
