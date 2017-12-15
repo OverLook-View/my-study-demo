@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>文件上传</title>
+</head>
+<body>
+    <p>可以上传文件了</p>
+    <form>
+        <input type="file" name="file"/>
+        <button type="button">上传</button>
+    </form>
+    <p>
+        <img th:src="@{/img/temp.jpg}"/>
+    </p>
+</body>
+<script src="/static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script type="application/javascript">
+    $("button").on("click",function(){
+        var formData = new FormData($("form")[0]);
+        $.ajax({
+            type: "POST",
+            url: "file/upload",
+            contentType : false, // 必须false才会避开jQuery对 formdata 的默认处理 XMLHttpRequest会对 formdata 进行正确的处理
+            processData : false, // 必须false才会自动加上正确的Content-Type
+            data: formData,
+            success: function(data){
+                if(data.status=="1"){
+                    location.reload();
+                }else{
+                    alert(data.message);
+                }
+            }
+        });
+    })
+</script>
+</html>
