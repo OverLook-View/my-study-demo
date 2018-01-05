@@ -1,5 +1,7 @@
 package com.sy.study.springboot.demo;
 
+import com.sy.study.springboot.demo.bean.Demo;
+import com.sy.study.springboot.demo.service.AsyncServicce;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,6 +35,14 @@ public class SpringbootDemoApplicationTests {
     public void contextLoads() {
         ResponseEntity<String> responseEntity = template.getForEntity(url.toString(), String.class);
         System.out.println(responseEntity.getBody());
+    }
+
+    @Autowired
+    private AsyncServicce asyncServicce;
+    @Test
+    public void test1() throws InterruptedException {
+        List<Demo> user = asyncServicce.findUser("123");
+        System.out.println(user);
     }
 
 }
