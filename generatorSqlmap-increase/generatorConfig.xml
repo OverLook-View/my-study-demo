@@ -97,13 +97,6 @@
 			enableSelectByExample="false" 
 			selectByExampleQueryId="false">
 		</table>
-		<table schema="" tableName="org_department_user_link" domainObjectName="OrgDepartmentUserLink" 
-			enableCountByExample="false" 
-			enableUpdateByExample="false" 
-			enableDeleteByExample="false" 
-			enableSelectByExample="false" 
-			selectByExampleQueryId="false">
-		</table>
 		<!-- <table schema="" tableName="knowledge_type" domainObjectName="KnowledgeType">
 		</table>
 		
