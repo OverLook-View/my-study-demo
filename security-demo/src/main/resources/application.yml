@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: security-demo
+  redis:
+    pool:
+      max-active: 200
+      max-wait: 200
+      max-idle: 50
+      min-idle: 10
+    timeout: 30000
+    url: redis://192.168.40.103:6379
+    database: 1
+security:
+  oauth2:
+    resource:
+      filter-order: 3
