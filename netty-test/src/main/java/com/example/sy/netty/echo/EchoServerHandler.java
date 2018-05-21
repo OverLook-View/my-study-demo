@@ -17,16 +17,19 @@ import io.netty.util.CharsetUtil;
 @ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
+    //每个信息入站都会调用
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf in = (ByteBuf) msg;
-        System.out.println("Server reveived: " + in.toString(CharsetUtil.UTF_8));
+        System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8));
         ctx.write(in);
     }
 
+    //通知处理器最后的channelread()是当前批处理中最后一条消息时调用
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }
 
+    //读操作时捕获异常调用
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
