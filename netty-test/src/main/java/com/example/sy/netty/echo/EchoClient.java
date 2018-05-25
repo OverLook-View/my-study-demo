@@ -41,18 +41,18 @@ public class EchoClient {
         NioEventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
-            b.group(group)
-                    .channel(NioSocketChannel.class)
-                    .remoteAddress(new InetSocketAddress(host, port))
+            b.group(group)//指定 EventLoopGroup 来处理客户端事件。由于我们使用 NIO 传输，所以用到了 NioEventLoopGroup 的实现
+                    .channel(NioSocketChannel.class)//使用的 channel 类型是一个用于 NIO 传输
+                    .remoteAddress(new InetSocketAddress(host, port))//当建立一个连接和一个新的通道时，创建添加到 EchoClientHandler 实例 到 channel pipeline
                     .handler(new ChannelInitializer<SocketChannel>() {
                         public void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(new EchoClientHandler());
                         }
                     });
-            ChannelFuture f = b.connect().sync();
-            f.channel().closeFuture().sync();
+            ChannelFuture f = b.connect().sync();//连接到远程;等待连接完成
+            f.channel().closeFuture().sync();//阻塞直到 Channel 关闭
         } finally {
-            group.shutdownGracefully().sync();
+            group.shutdownGracefully().sync();//调用 shutdownGracefully() 来关闭线程池和释放所有资源
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.sy.netty.echo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -13,10 +14,12 @@ import io.netty.util.CharsetUtil;
  * \* Description:
  * \
  */
-@ChannelHandler.Sharable
+@ChannelHandler.Sharable//@Sharable标记这个类的实例可以在 channel 里共享
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     //服务器的连接被建立后调用
     public void channelActive(ChannelHandlerContext ctx) {
+        Channel channel = ctx.channel();
+        ByteBuf buffer = ctx.alloc().buffer();
         ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
     }
 

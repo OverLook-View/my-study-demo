@@ -39,20 +39,18 @@ public class EchoServer {
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(group)
-                    .channel(NioServerSocketChannel.class)
+                    .channel(NioServerSocketChannel.class)//指定使用 NIO 的传输 Channel
                     .localAddress(new InetSocketAddress(port))
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                    .childHandler(new ChannelInitializer<SocketChannel>() {//添加 EchoServerHandler 到 Channel 的 ChannelPipeline
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(new EchoServerHandler());
                         }
                     });
-//                    .option(ChannelOption.SO_BACKLOG,128)
-//                    .childOption(ChannelOption.SO_KEEPALIVE,true);
-            ChannelFuture f = serverBootstrap.bind().sync();
+            ChannelFuture f = serverBootstrap.bind().sync();//绑定的服务器;sync 等待服务器关闭
             System.out.println(EchoServer.class.getName() + " started and listen on " + f.channel().localAddress());
-            f.channel().closeFuture().sync();
+            f.channel().closeFuture().sync();//关闭 channel 和 块，直到它被关闭
         } finally {
-            group.shutdownGracefully().sync();
+            group.shutdownGracefully().sync();//关机的 EventLoopGroup，释放所有资源。
         }
     }
 }
