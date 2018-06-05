@@ -1,4 +1,4 @@
-package com.example.sy.netty.channelHandle;
+package com.example.sy.netty.channelHandler;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;

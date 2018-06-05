@@ -1,6 +1,6 @@
 package com.example.sy.netty.channelPiepeline;
 
-import com.example.sy.netty.channelHandle.SimpleDiscardHandler;
+import com.example.sy.netty.channelHandler.SimpleDiscardHandler;
 import io.netty.channel.ChannelPipeline;
 
 /**
