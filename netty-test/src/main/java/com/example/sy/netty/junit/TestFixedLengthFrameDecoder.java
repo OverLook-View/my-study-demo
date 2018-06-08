@@ -12,7 +12,7 @@ import org.junit.Test;
  * \* Description:
  * \
  */
-public class FixedLengthFrameDecoderTest {
+public class TestFixedLengthFrameDecoder {
     @Test
     public void testFrameDecoded(){
         ByteBuf buffer = Unpooled.buffer();
