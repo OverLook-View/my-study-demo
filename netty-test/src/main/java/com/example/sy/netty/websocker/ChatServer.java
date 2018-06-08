@@ -28,11 +28,15 @@ public class ChatServer {
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(group)
                 .channel(NioServerSocketChannel.class)
-                .childHandler(new ChatServerInitializer(channelGroup));
+                .childHandler(createInitializer(channelGroup));
         ChannelFuture future = bootstrap.bind(address);
         future.syncUninterruptibly();
         channel = future.channel();
         return future;
+    }
+
+    protected ChannelInitializer<Channel> createInitializer(ChannelGroup group) {
+        return new ChatServerInitializer(channelGroup);
     }
 
     public void destroy() {
@@ -43,7 +47,7 @@ public class ChatServer {
         group.shutdownGracefully();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         int port = 8080;
         final ChatServer chatServer = new ChatServer();
         ChannelFuture future = chatServer.start(new InetSocketAddress(port));
