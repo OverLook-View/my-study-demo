@@ -1,4 +1,4 @@
-package com.example.sy.netty.websocker;
+package com.example.sy.netty.websocket;
 
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;

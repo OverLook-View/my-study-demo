@@ -1,4 +1,4 @@
-package com.example.sy.netty.websocker;
+package com.example.sy.netty.websocket;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -8,7 +8,6 @@ import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 import java.net.InetSocketAddress;
-import java.security.cert.CertificateException;
 
 /**
  * \* User: admin
