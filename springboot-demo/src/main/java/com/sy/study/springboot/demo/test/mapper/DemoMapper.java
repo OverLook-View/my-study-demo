@@ -1,6 +1,6 @@
-package com.sy.study.springboot.demo.mapper;
+package com.sy.study.springboot.demo.test.mapper;
 
-import com.sy.study.springboot.demo.bean.Demo;
+import com.sy.study.springboot.demo.test.bean.Demo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

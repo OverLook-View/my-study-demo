@@ -1,7 +1,7 @@
-package com.sy.study.springboot.demo.service;
+package com.sy.study.springboot.demo.test.service;
 
-import com.sy.study.springboot.demo.bean.Demo;
-import com.sy.study.springboot.demo.mapper.DemoMapper;
+import com.sy.study.springboot.demo.test.bean.Demo;
+import com.sy.study.springboot.demo.test.mapper.DemoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

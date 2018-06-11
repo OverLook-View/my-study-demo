@@ -1,7 +1,7 @@
-package com.sy.study.springboot.demo;
+package com.sy.study.springboot.demo.test;
 
-import com.sy.study.springboot.demo.bean.Demo;
-import com.sy.study.springboot.demo.service.AsyncServicce;
+import com.sy.study.springboot.demo.test.bean.Demo;
+import com.sy.study.springboot.demo.test.service.AsyncServicce;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

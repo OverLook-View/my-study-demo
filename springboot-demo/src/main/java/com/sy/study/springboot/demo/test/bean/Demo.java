@@ -1,4 +1,4 @@
-package com.sy.study.springboot.demo.bean;
+package com.sy.study.springboot.demo.test.bean;
 
 public class Demo {
     private int id;

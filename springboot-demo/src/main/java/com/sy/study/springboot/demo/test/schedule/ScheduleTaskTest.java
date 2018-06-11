@@ -1,4 +1,4 @@
-package com.sy.study.springboot.demo.schedule;
+package com.sy.study.springboot.demo.test.schedule;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

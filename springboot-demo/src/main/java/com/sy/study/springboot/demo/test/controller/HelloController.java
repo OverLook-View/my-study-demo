@@ -1,9 +1,9 @@
-package com.sy.study.springboot.demo.controller;
+package com.sy.study.springboot.demo.test.controller;
 
-import com.sy.study.springboot.demo.configuration.ConfigBean;
-import com.sy.study.springboot.demo.configuration.User;
-import com.sy.study.springboot.demo.service.DemoService;
-import com.sy.study.springboot.demo.service.RedisService;
+import com.sy.study.springboot.demo.test.configuration.ConfigBean;
+import com.sy.study.springboot.demo.test.configuration.User;
+import com.sy.study.springboot.demo.test.service.DemoService;
+import com.sy.study.springboot.demo.test.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
