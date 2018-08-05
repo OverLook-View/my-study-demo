@@ -1,5 +1,6 @@
 package com.example.sy.netty.websocket;
 
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -26,6 +27,7 @@ public class TextWebsocketFramehandler extends SimpleChannelInboundHandler<TextW
             ctx.pipeline().remove(HttpRequestHandler.class);//如果接收的事件表明握手成功,就从 ChannelPipeline 中删除HttpRequestHandler ，因为接下来不会接受 HTTP 消息了
             group.writeAndFlush(new TextWebSocketFrame("Client " + ctx.channel() + " joined"));//写一条消息给所有的已连接 WebSocket 客户端，通知它们建立了一个新的 Channel 连接
             group.add(ctx.channel());//添加新连接的 WebSocket Channel 到 ChannelGroup 中，这样它就能收到所有的信息
+            Channel c=group.find(ctx.channel().id());
         } else {
             super.userEventTriggered(ctx, evt);
         }
@@ -35,4 +37,6 @@ public class TextWebsocketFramehandler extends SimpleChannelInboundHandler<TextW
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         group.writeAndFlush(msg.retain());//保留收到的消息，并通过 writeAndFlush() 传递给所有连接的客户端。
     }
+
+
 }
