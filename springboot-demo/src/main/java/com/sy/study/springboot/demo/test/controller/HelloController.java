@@ -2,9 +2,11 @@ package com.sy.study.springboot.demo.test.controller;
 
 import com.sy.study.springboot.demo.test.configuration.ConfigBean;
 import com.sy.study.springboot.demo.test.configuration.User;
+import com.sy.study.springboot.demo.test.service.AaaService;
 import com.sy.study.springboot.demo.test.service.DemoService;
 import com.sy.study.springboot.demo.test.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,9 @@ public class HelloController {
     private DemoService demoService;
     @Autowired
     private RedisService redisService;
+    @Autowired
+    @Qualifier("aaaService")
+    private AaaService aaaService;
     @RequestMapping("/")
     public String hello() {
 
