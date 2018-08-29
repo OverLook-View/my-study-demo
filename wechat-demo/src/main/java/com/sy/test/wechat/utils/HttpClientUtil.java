@@ -171,7 +171,6 @@ public class HttpClientUtil {
             jsonObject = (JsonObject) new JsonParser().parse(buffer.toString());
             return jsonObject;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             throw e;
         } finally {
