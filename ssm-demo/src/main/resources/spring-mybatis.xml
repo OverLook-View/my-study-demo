@@ -11,7 +11,7 @@
     <!-- 配置数据源 使用的是Druid数据源 -->
     <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 配置数据库驱动（Druid会根据url自动识别，可不配） -->
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc.url}"/>
