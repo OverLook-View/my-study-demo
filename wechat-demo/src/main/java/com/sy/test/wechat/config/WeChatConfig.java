@@ -1,7 +1,7 @@
 package com.sy.test.wechat.config;
 
 import com.google.gson.JsonObject;
-import com.sy.test.wechat.utils.HttpClientUtils;
+import com.sy.test.wechat.utils.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +33,7 @@ public class WeChatConfig {
             String requestUrl = getAccessTokenUrl.replace("APPID", appId).replace("APPSECRET", appSecret);
             JsonObject jsonObject = null;
             try {
-                jsonObject = HttpClientUtils.httpRequest(requestUrl, "GET", null);
+                jsonObject = HttpClientUtil.httpRequest(requestUrl, "GET", null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
