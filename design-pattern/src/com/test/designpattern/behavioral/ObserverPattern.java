@@ -40,6 +40,7 @@ public class ObserverPattern {
 
         public void setState(int state) {
             this.state = state;
+            notifyAllObservers();
         }
 
         public void attach(Observer observer) {
@@ -70,6 +71,39 @@ public class ObserverPattern {
             System.out.println("BanaryObserver String: " + Integer.toBinaryString(subject.getState()));
         }
     }
+    static class OctalObserver extends Observer {
+        public OctalObserver(Subject subject) {
+            this.subject = subject;
+            this.subject.attach(this);
+        }
 
+        @Override
+        public void update() {
+            System.out.println("OctalObserver String: " + Integer.toOctalString(subject.getState()));
+        }
+    }
+    static class HexaObserver extends Observer {
+        public HexaObserver(Subject subject) {
+            this.subject = subject;
+            this.subject.attach(this);
+        }
 
+        @Override
+        public void update() {
+            System.out.println("HexaObserver String: " + Integer.toHexString(subject.getState()).toUpperCase());
+        }
+    }
+
+    public static void main(String[] args) {
+        Subject subject=new Subject();
+
+        new BinaryObserver(subject);
+        new OctalObserver(subject);
+        new HexaObserver(subject);
+
+        System.out.println("First state change:15");
+        subject.setState(15);
+        System.out.println("Second state change:10");
+        subject.setState(10);
+    }
 }
