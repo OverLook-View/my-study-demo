@@ -1,0 +1,37 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    servlet:
+      content-type: text/html
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+mybatis:
+  #mapper.xml存放位置
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  #映射实体类存放位置
+  type-aliases-package: com.sy.springboot.demo2.springbootdemo2.bean
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
+#分页插件
+pagehelper:
+  helper-dialect: oracle
+  offset-as-page-num: true
+  row-bounds-with-count: true
+  page-size-zero: true
+  reasonable: true
+  support-methods-arguments: false
+

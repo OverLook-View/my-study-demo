@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="demo:${list}">
+        <td th:text="${demo.id}"></td>
+        <td th:text="${demo.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script type="application/javascript" src="../static/js/demo.js" th:src="@{/js/demo.js}"></script>
+</html>
