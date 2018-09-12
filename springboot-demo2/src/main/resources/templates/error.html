@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>提示</title>
+<style type="text/css">
+.invite-fail {
+	width: 100%;
+	height: 100%;
+	padding-top: 5rem;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.invite-fail i {
+	display: block;
+	width: 17.5rem;
+	margin: 0 auto;
+}
+
+.invite-fail i img {
+	width: 100%;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+}
+
+.invite-fail p {
+	color: #f66;
+	text-align: center;
+	font-size: 2.4rem;
+}
+</style>
+</head>
+
+<body>
+	<section class="main-cantainer wt">
+		<div class="invite-fail">
+			<i><img src="../static/img/error.png" th:src="@{/img/error.png}" alt=""></i>
+			<p>[[${status}]]</p>
+			<div style="text-align: center;">[[${error}]]</div>
+		</div>
+	</section>
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+	console.log('[[${message}]]');
+</script>
+</html>
