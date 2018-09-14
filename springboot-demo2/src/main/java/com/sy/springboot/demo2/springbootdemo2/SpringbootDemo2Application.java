@@ -5,6 +5,7 @@ import com.sy.springboot.demo2.springbootdemo2.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,6 +22,7 @@ import java.util.List;
 @MapperScan(basePackages = "com.sy.springboot.demo2.springbootdemo2.mapper")
 @EnableTransactionManagement
 @EnableScheduling
+@ServletComponentScan
 public class SpringbootDemo2Application {
 
     public static void main(String[] args) {
