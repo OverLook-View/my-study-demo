@@ -17,7 +17,7 @@ import java.util.Map;
  **/
 @DisallowConcurrentExecution
 @Component
-public class QuartzJobFactory implements Job {
+public class MyQuartzJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         System.out.println("任务运行：" + new Date());

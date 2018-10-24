@@ -1,6 +1,6 @@
 package com.sy.test.quartz.test;
 
-import com.sy.test.quartz.schedule.QuartzJobFactory;
+import com.sy.test.quartz.schedule.MyQuartzJob;
 import com.sy.test.quartz.schedule.ScheduleJob;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,14 +21,15 @@ import java.util.Map;
 @ContextConfiguration(locations = "classpath:spring-application.xml")
 public class QuartzDemoTest {
     @Autowired
-    private QuartzJobFactory quartzJobFactory;
+    private MyQuartzJob myQuartzJob;
 
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
+
     @Test
-    public void test1() throws SchedulerException {
+    public void test1() throws SchedulerException, InterruptedException {
         Scheduler scheduler = schedulerFactoryBean.getScheduler();
-        Map<String, ScheduleJob> map = QuartzJobFactory.getAllJob();
+        Map<String, ScheduleJob> map = MyQuartzJob.getAllJob();
         for (Map.Entry<String, ScheduleJob> entry : map.entrySet()) {
             ScheduleJob job = entry.getValue();
             TriggerKey triggerKey = TriggerKey.triggerKey(job.getJobName(), job.getJobGroup());
@@ -36,7 +37,25 @@ public class QuartzDemoTest {
             //获取trigger，即在spring配置文件中定义的 bean id="myTrigger"
             CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
 
+            if (null == trigger) {
+                JobDetail jobDetail = JobBuilder.newJob(MyQuartzJob.class).withIdentity(job.getJobName(), job.getJobGroup()).build();
+                jobDetail.getJobDataMap().put("scheduleJob", job);
+                //表达式调度构建起
+                CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
+                //按新的cronExpression表达式构建一个新的trigger
+                trigger = TriggerBuilder.newTrigger().withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(cronScheduleBuilder).build();
+                scheduler.scheduleJob(jobDetail,trigger);
+            } else {
+                //trigger已存在，更新定时设置
+                //表达式调度构建器
+                CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
+                //按新的cronExpression表达式构建trigger
+                trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(cronScheduleBuilder).build();
+                //按新的trigger设置job执行
+                scheduler.rescheduleJob(triggerKey, trigger);
+            }
         }
+        Thread.sleep(60l*1000);
     }
 
 }
