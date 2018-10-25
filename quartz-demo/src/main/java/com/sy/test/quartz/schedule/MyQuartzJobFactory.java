@@ -1,12 +1,5 @@
 package com.sy.test.quartz.schedule;
 
-import org.quartz.DisallowConcurrentExecution;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,15 +8,7 @@ import java.util.Map;
  * @author: sheny
  * @create: 2018-10-22 10:02
  **/
-@DisallowConcurrentExecution
-@Component
-public class MyQuartzJob implements Job {
-    @Override
-    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        System.out.println("任务运行：" + new Date());
-        ScheduleJob scheduleJob = (ScheduleJob) jobExecutionContext.getMergedJobDataMap().get("scheduleJob");
-        System.out.println("任务名称 = 【" + scheduleJob.getJobName() + "】");
-    }
+public class MyQuartzJobFactory {
     /** 计划任务map */
     private static Map<String, ScheduleJob> jobMap = new HashMap<String, ScheduleJob>();
 
