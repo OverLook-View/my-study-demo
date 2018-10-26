@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @description: 时间格式化工具类
- * @author: sheny
+ * @author: OverlookView
  * @create: 2018-09-06 16:00
  **/
 public class DateFormatUtil {

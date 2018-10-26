@@ -5,7 +5,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * @description:
- * @author: sheny
+ * @author: OverlookView
  * @create: 2018-09-14 09:10
  **/
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

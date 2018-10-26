@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**BaseBean
  * @description: 登陆拦截器
- * @author: sheny
+ * @author: OverlookView
  * @create: 2018-09-11 16:28
  **/
 @Component

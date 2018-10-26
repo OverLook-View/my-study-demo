@@ -26,7 +26,7 @@ public class XmlUtil {
      * @Description: Object转xml
      * @Param: [object, cls]
      * @return: java.lang.String
-     * @Author: sheny
+     * @Author: OverlookView
      */
     public static String objectToXml(Object object, Class cls) {
         return objectToXml(object, cls, null);
@@ -36,7 +36,7 @@ public class XmlUtil {
      * @Description: Object转xml
      * @Param: [object, cls, itemCls]
      * @return: java.lang.String
-     * @Author: sheny
+     * @Author: OverlookView
      */
     public static String objectToXml(Object object, Class cls, Class itemCls) {
         xstream.alias("xml", cls);
@@ -49,7 +49,7 @@ public class XmlUtil {
      * @Description: request转map
      * @Param: [request]
      * @return: java.util.Map<java.lang.String , java.lang.String>
-     * @Author: sheny
+     * @Author: OverlookView
      */
     public static Map<String, String> parseXml(HttpServletRequest request) throws IOException, DocumentException {
         // 将解析结果存储在 HashMap 中
