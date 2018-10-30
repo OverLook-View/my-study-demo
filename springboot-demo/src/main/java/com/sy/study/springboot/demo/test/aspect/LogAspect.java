@@ -3,6 +3,7 @@ package com.sy.study.springboot.demo.test.aspect;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 
 /**
  * @description:
@@ -44,9 +46,24 @@ public class LogAspect {
         logger.info("args={}", joinPoint.getArgs());
     }
 
-    @After("execution(* com.sy.study.springboot.demo.test.controller.*.*(..))")
+//    @After("execution(* com.sy.study.springboot.demo.test.controller.*.*(..))")
+//    @Pointcut("@annotation(com.sy.study.springboot.demo.test.aspect.Log)")
+    @After("@annotation(com.sy.study.springboot.demo.test.aspect.Log)")
     public void after(JoinPoint joinPoint) {
-        System.out.println("after log-----");
+        System.out.println("@Log after log-----");
+
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        // 请求的类名
+        String className = joinPoint.getTarget().getClass().getName();
+        //请求的方法名
+        String methodName = signature.getName();
+        //获取方法中的注解
+        Log log = method.getAnnotation(Log.class);
+        // 请求的参数
+        Object[] args = joinPoint.getArgs();
+
+        System.out.println(log);
     }
 
     @Around("execution(* com.sy.study.springboot.demo.test.controller.*.*(..))")
