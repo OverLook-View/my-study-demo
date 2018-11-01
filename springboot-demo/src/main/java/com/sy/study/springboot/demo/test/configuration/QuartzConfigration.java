@@ -50,7 +50,7 @@ public class QuartzConfigration {
      * attention:
      * Details：定义quartz调度工厂
      */
-    @Bean(name = "schedule")
+    @Bean(name = "scheduler")
     public SchedulerFactoryBean scheduleFactory(Trigger cronTrigger){
         SchedulerFactoryBean bean = new SchedulerFactoryBean();
         // 用于quartz集群,QuartzScheduler 启动时更新己存在的Job
