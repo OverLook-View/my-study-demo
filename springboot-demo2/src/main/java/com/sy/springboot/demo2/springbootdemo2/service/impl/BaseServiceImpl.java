@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.sy.springboot.demo2.springbootdemo2.bean.BaseBean;
 import com.sy.springboot.demo2.springbootdemo2.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
 
@@ -21,9 +22,10 @@ public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 
     }
 
+    @Cacheable(value = "data", key = "targetClass+methodName")
     @Override
     public List<T> queryAll() {
-
+        System.out.println("service");
         return this.mapper.select(null);
     }
 

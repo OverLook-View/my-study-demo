@@ -17,6 +17,11 @@ spring:
       charset: UTF-8
       enabled: true
       force: true
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+
 mybatis:
   #mapper.xml存放位置
   mapper-locations: classpath*:mapper/*Mapper.xml
@@ -34,4 +39,3 @@ pagehelper:
   page-size-zero: true
   reasonable: true
   support-methods-arguments: false
-
