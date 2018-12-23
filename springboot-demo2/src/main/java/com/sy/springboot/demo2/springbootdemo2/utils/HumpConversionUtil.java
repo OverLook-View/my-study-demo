@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * @description:驼峰转换工具类
- * @author: sheny
+ * @author: OverlookView
  * @create: 2018-09-05 15:20
  **/
 public class HumpConversionUtil {

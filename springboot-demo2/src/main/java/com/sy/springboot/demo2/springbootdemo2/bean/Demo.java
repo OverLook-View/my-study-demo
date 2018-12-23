@@ -4,7 +4,7 @@ import javax.persistence.Id;
 
 /**
  * @description:
- * @author: sheny
+ * @author: OverlookView
  * @create: 2018-09-11 16:32
  **/
 public class Demo extends BaseBean {

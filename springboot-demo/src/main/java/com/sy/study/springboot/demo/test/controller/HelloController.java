@@ -1,5 +1,6 @@
 package com.sy.study.springboot.demo.test.controller;
 
+import com.sy.study.springboot.demo.test.aspect.Log;
 import com.sy.study.springboot.demo.test.configuration.ConfigBean;
 import com.sy.study.springboot.demo.test.configuration.User;
 import com.sy.study.springboot.demo.test.service.AaaService;
@@ -28,6 +29,7 @@ public class HelloController {
     @Qualifier("aaaService")
     private AaaService aaaService;
     @RequestMapping("/")
+    @Log(module = "hello",remark = "测试",operate = Log.OperateEnum.query)
     public String hello() {
 
         return configBean.getGreeting()+" >>>>"+configBean.getName()+" >>>>"+ configBean.getUuid()+" >>>>"+configBean.getMax();

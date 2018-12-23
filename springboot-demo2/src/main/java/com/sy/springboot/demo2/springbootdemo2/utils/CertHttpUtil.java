@@ -18,7 +18,7 @@ import java.security.KeyStore;
 
 /**
  * @description: http工具类（带证书）
- * @author: sheny
+ * @author: OverlookView
  * @create: 2018-09-11 10:51
  **/
 public class CertHttpUtil {
