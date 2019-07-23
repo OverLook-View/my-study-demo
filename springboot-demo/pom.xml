@@ -114,6 +114,12 @@
 			<version>1.16.18</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- spring cache -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

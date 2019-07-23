@@ -1,6 +1,8 @@
 package com.sy.study.springboot.demo.test.bean;
 
-public class Demo {
+import java.io.Serializable;
+
+public class Demo implements Serializable {
     private int id;
     private String name;
 
