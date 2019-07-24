@@ -1,4 +1,4 @@
-package com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq;
+package com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.recerver;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

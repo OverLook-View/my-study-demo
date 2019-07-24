@@ -1,4 +1,4 @@
-package com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq;
+package com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.sender;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

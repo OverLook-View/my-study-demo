@@ -1,6 +1,7 @@
 package com.example.test.rabbitmq.sbrabbitmqdemo;
 
-import com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.HelloSender;
+import com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.sender.HelloSender;
+import com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.sender.TopicMsgSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,22 @@ public class SbRabbitmqDemoApplicationTests {
 
     @Autowired
     private HelloSender helloSender;
+    @Autowired
+    private TopicMsgSender topicMsgSender;
 
     @Test
-    public void rabbitTest(){
+    public void rabbitTest() {
         String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        String context=" Hello "+dateStr;
+        String context = " Hello " + dateStr;
         for (int i = 0; i < 100; i++) {
-            helloSender.send(i+context);
+            helloSender.send(i + context);
         }
+    }
+
+    @Test
+    public void topicTest() {
+        topicMsgSender.send1();
+        topicMsgSender.send2();
     }
 
 }
