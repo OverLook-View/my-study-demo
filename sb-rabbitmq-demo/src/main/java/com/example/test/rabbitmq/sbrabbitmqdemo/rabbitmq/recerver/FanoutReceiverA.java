@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
  * @create: 2019-07-23 14:46
  **/
 @Component
-@RabbitListener(queues = "q_topic_messages")
-public class TopicRecerver2 {
+@RabbitListener(queues = "q_fanout_A")
+public class FanoutReceiverA {
     @RabbitHandler
     public void process(String hello) {
-        System.out.println("topicReceiver2: " + hello);
+        System.out.println("FanoutReceiverA: " + hello);
     }
 }

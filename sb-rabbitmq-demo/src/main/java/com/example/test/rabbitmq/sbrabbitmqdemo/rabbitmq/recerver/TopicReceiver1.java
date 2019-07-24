@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @RabbitListener(queues = "q_topic_message")
-public class TopicRecerver1 {
+public class TopicReceiver1 {
     @RabbitHandler
     public void process(String hello) {
         System.out.println("topicReceiver1: " + hello);

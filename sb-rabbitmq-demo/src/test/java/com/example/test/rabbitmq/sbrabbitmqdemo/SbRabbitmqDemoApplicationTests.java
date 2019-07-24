@@ -4,6 +4,7 @@ import com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.sender.HelloSender;
 import com.example.test.rabbitmq.sbrabbitmqdemo.rabbitmq.sender.TopicMsgSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -23,6 +24,8 @@ public class SbRabbitmqDemoApplicationTests {
     private HelloSender helloSender;
     @Autowired
     private TopicMsgSender topicMsgSender;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Test
     public void rabbitTest() {
@@ -37,6 +40,11 @@ public class SbRabbitmqDemoApplicationTests {
     public void topicTest() {
         topicMsgSender.send1();
         topicMsgSender.send2();
+    }
+
+    @Test
+    public void fanoutTest() {
+        amqpTemplate.convertAndSend("mybootfanoutExchange","","hi, this is fanout msg");
     }
 
 }
