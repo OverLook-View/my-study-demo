@@ -1,7 +1,7 @@
 spring:
   kafka:
     # 指定kafka server的地址，集群配多个，中间，逗号隔开
-    bootstrap-servers: 192.168.103.158：9092
+    bootstrap-servers: 192.168.103.158:9092
     # 生产者producer
     producer:
       # 写入失败时，重试次数。当leader节点失效，一个repli节点会替代成为leader节点，此时可能出现写入失败，
@@ -26,3 +26,11 @@ spring:
       group-id: test
       # smallest和largest才有效，如果smallest重新0开始读取，如果是largest从logfile的offset读取。一般情况下我们都是设置smallest
       auto-offset-reset: earliest
+      # enable.auto.commit:true --> 设置自动提交offset
+      enable-auto-commit: true
+      # 如果'enable.auto.commit'为true，则消费者偏移自动提交给Kafka的频率（以毫秒为单位），默认值为5000。
+      auto-commit-interval: 1000S
+
+      # 指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
