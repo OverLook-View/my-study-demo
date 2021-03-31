@@ -65,47 +65,47 @@ public class AvlTree<AnyType extends Comparable<? super AnyType>> extends Binary
     }
 
     private AvlNode<AnyType> rotateWithRightChild(AvlNode<AnyType> k2) {
-        AvlNode<AnyType> k1=k2.right;
-        k2.right=k1.left;
-        k1.left=k2;
-        k2.height=Math.max(height(k2.left),height(k2.right))+1;
-        k1.height=Math.max(height(k1.right),k2.height)+1;
+        AvlNode<AnyType> k1 = k2.right;
+        k2.right = k1.left;
+        k1.left = k2;
+        k2.height = Math.max(height(k2.left), height(k2.right)) + 1;
+        k1.height = Math.max(height(k1.right), k2.height) + 1;
         return k1;
     }
 
     private AvlNode<AnyType> rotateWithLeftChild(AvlNode<AnyType> k2) {
-        AvlNode<AnyType> k1=k2.left;
-        k2.left=k1.right;
-        k1.right=k2;
-        k2.height=Math.max(height(k2.left),height(k2.right))+1;
-        k1.height=Math.max(height(k1.left),k2.height)+1;
+        AvlNode<AnyType> k1 = k2.left;
+        k2.left = k1.right;
+        k1.right = k2;
+        k2.height = Math.max(height(k2.left), height(k2.right)) + 1;
+        k1.height = Math.max(height(k1.left), k2.height) + 1;
         return k1;
     }
 
-    private AvlNode<AnyType> doubleWithRightChild(AvlNode<AnyType> k3){
-        k3.right=rotateWithLeftChild(k3.right);
+    private AvlNode<AnyType> doubleWithRightChild(AvlNode<AnyType> k3) {
+        k3.right = rotateWithLeftChild(k3.right);
         return rotateWithRightChild(k3);
     }
 
-    private AvlNode<AnyType> doubleWithLeftChild(AvlNode<AnyType> k3){
-        k3.left=rotateWithRightChild(k3.left);
+    private AvlNode<AnyType> doubleWithLeftChild(AvlNode<AnyType> k3) {
+        k3.left = rotateWithRightChild(k3.left);
         return rotateWithLeftChild(k3);
     }
 
-    private AvlNode<AnyType> remove(AnyType x, AvlNode<AnyType> t){
-        if (t==null)
+    private AvlNode<AnyType> remove(AnyType x, AvlNode<AnyType> t) {
+        if (t == null)
             return t;
         int compareResult = x.compareTo(t.element);
 
-        if (compareResult<0)
-            t.left=remove(x,t.left);
-        else if (compareResult>0){
-            t.right=remove(x,t.right);
-        } else if (t.left!=null && t.right!=null){
-            t.element=findMin(t.right).element;
-            t.right=remove(t.element,t.right);
+        if (compareResult < 0)
+            t.left = remove(x, t.left);
+        else if (compareResult > 0) {
+            t.right = remove(x, t.right);
+        } else if (t.left != null && t.right != null) {
+            t.element = findMin(t.right).element;
+            t.right = remove(t.element, t.right);
         } else {
-            t=(t.left!=null)?t.left:t.right;
+            t = (t.left != null) ? t.left : t.right;
         }
         return balance(t);
     }
