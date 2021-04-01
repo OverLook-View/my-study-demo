@@ -10,19 +10,23 @@ import java.util.EmptyStackException;
  **/
 public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 
-    private static class BinaryNode<AnyType> {
+    public static class BinaryNode<AnyType> {
         AnyType element;
         BinaryNode<AnyType> left;
         BinaryNode<AnyType> right;
 
+        public BinaryNode() {
+            this(null, null, null);
+        }
+
         public BinaryNode(AnyType theElement) {
-            this(theElement,null,null);
+            this(theElement, null, null);
         }
 
         public BinaryNode(AnyType theElement, BinaryNode<AnyType> lt, BinaryNode<AnyType> rt) {
-            element=theElement;
-            left=lt;
-            right=rt;
+            element = theElement;
+            left = lt;
+            right = rt;
         }
     }
 
@@ -111,6 +115,16 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
         return t;
     }
 
+    public void insert(AnyType x) {
+        if (x == null)
+            return;
+        if (root == null) {
+            root = new BinaryNode<AnyType>(x);
+        } else {
+            insert(x, root);
+        }
+    }
+
     private BinaryNode<AnyType> remove(AnyType x, BinaryNode<AnyType> t) {
         if (t == null)
             return t;
@@ -129,12 +143,28 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
     }
 
     public void printTree() {
-        //todo
-        printTree(root);
+        if (isEmpty())
+            System.out.println("Empty tree");
+        else
+            printTree(root);
     }
 
-    public void printTree(BinaryNode<AnyType> t) {
-        //todo
+    private void printTree(BinaryNode<AnyType> t) {
+        if (t != null) {
+            printTree(t.left);
+            System.out.println(t.element);
+            printTree(t.right);
+        }
     }
 
+    private int height(BinaryNode<AnyType> t) {
+        if (t == null)
+            return -1;
+        else
+            return 1 + Math.max(height(t.left), height(t.right));
+    }
+
+    public int height() {
+        return height(root);
+    }
 }
