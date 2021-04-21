@@ -13,25 +13,25 @@ public class SeparateChainingHashTable<AnyType> {
     }
 
     public SeparateChainingHashTable(int size) {
-        theLists=new LinkedList[nextPrime(size)];
+        theLists = new LinkedList[nextPrime(size)];
         for (int i = 0; i < theLists.length; i++) {
-            theLists[i]=new LinkedList<>();
+            theLists[i] = new LinkedList<>();
         }
     }
 
     public void insert(AnyType x) {
         List<AnyType> whichList = theLists[myHash(x)];
-        if (whichList.contains(x)){
+        if (whichList.contains(x)) {
             whichList.add(x);
 
-            if (++currentSize>theLists.length)
+            if (++currentSize > theLists.length)
                 rehash();
         }
     }
 
     public void remove(AnyType x) {
         List<AnyType> whichList = theLists[myHash(x)];
-        if (whichList.contains(x)){
+        if (whichList.contains(x)) {
             whichList.remove(x);
             currentSize--;
         }
@@ -46,11 +46,21 @@ public class SeparateChainingHashTable<AnyType> {
         for (int i = 0; i < theLists.length; i++) {
             theLists[i].clear();
         }
-        currentSize=0;
+        currentSize = 0;
     }
 
     private void rehash() {
-
+        List<AnyType>[] oldLists = theLists;
+        theLists = new List[nextPrime(2 * theLists.length)];
+        for (int j = 0; j < theLists.length; j++) {
+            theLists[j] = new LinkedList<>();
+        }
+        currentSize = 0;
+        for (int i = 0; i < oldLists.length; i++) {
+            for (AnyType item : oldLists[i]) {
+                insert(item);
+            }
+        }
     }
 
     private int myHash(AnyType x) {

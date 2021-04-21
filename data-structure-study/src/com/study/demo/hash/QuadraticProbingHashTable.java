@@ -66,7 +66,13 @@ public class QuadraticProbingHashTable<AnyType> {
     }
 
     private void rehash() {
-
+        HashEntry<AnyType>[] oldArray = array;
+        allocateArray(nexPrime(2 * oldArray.length));
+        currentSize = 0;
+        for (int i = 0; i < oldArray.length; i++) {
+            if (oldArray[i] != null && oldArray[i].isActive)
+                insert(oldArray[i].element);
+        }
     }
 
     private int myHash(AnyType x) {
