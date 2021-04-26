@@ -1,5 +1,7 @@
 package com.study.demo.hash;
 
+import com.study.demo.utils.PrimeUtil;
+
 public class QuadraticProbingHashTable<AnyType> {
     private static final int DEFAULT_TABLE_SIZE = 11;
 
@@ -45,7 +47,7 @@ public class QuadraticProbingHashTable<AnyType> {
     }
 
     private void allocateArray(int arraySize) {
-        array = new HashEntry[nexPrime(arraySize)];
+        array = new HashEntry[PrimeUtil.nextPrime(arraySize)];
     }
 
     private boolean isActive(int currentPos) {
@@ -67,7 +69,7 @@ public class QuadraticProbingHashTable<AnyType> {
 
     private void rehash() {
         HashEntry<AnyType>[] oldArray = array;
-        allocateArray(nexPrime(2 * oldArray.length));
+        allocateArray(PrimeUtil.nextPrime(2 * oldArray.length));
         currentSize = 0;
         for (int i = 0; i < oldArray.length; i++) {
             if (oldArray[i] != null && oldArray[i].isActive)

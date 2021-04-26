@@ -1,5 +1,7 @@
 package com.study.demo.hash;
 
+import com.study.demo.utils.PrimeUtil;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class SeparateChainingHashTable<AnyType> {
     }
 
     public SeparateChainingHashTable(int size) {
-        theLists = new LinkedList[nextPrime(size)];
+        theLists = new LinkedList[PrimeUtil.nextPrime(size)];
         for (int i = 0; i < theLists.length; i++) {
             theLists[i] = new LinkedList<>();
         }
@@ -51,7 +53,7 @@ public class SeparateChainingHashTable<AnyType> {
 
     private void rehash() {
         List<AnyType>[] oldLists = theLists;
-        theLists = new List[nextPrime(2 * theLists.length)];
+        theLists = new List[PrimeUtil.nextPrime(2 * theLists.length)];
         for (int j = 0; j < theLists.length; j++) {
             theLists[j] = new LinkedList<>();
         }
