@@ -16,6 +16,13 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     public BinaryHeap(AnyType[] items) {
+        currentSize = items.length;
+        array = (AnyType[]) new Comparable[(currentSize + 2) * 11 / 10];
+        int i = 1;
+        for (AnyType item : items) {
+            array[i++] = item;
+            buildHeap();
+        }
     }
 
     public void insert(AnyType x) {
@@ -47,9 +54,9 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     public void makeEmpty() {
-        currentSize=0;
+        currentSize = 0;
         Class<? extends Comparable> aClass = array[0].getClass();
-        array= (AnyType[]) Array.newInstance(aClass,DEFAULT_CAPACITY);
+        array = (AnyType[]) Array.newInstance(aClass, DEFAULT_CAPACITY);
     }
 
     private void percolateDown(int hole) {
@@ -68,7 +75,9 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     private void buildHeap() {
-
+        for (int i = currentSize / 2; i > 0; i--) {
+            percolateDown(i);
+        }
     }
 
     private void enlargeArray(int newSize) {
