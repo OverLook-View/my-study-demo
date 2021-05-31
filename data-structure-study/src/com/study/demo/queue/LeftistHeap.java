@@ -37,17 +37,17 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
         root = merge(new Node<AnyType>(x), root);
     }
 
-    public AnyType findMin() throws Exception {
+    public AnyType findMin() {
+        return null;
+    }
+
+    public AnyType deleteMin() throws Exception {
         if (isEmpty())
             throw new Exception("underflow exception");
         AnyType minItem = root.element;
         root = merge(root.left, root.right);
         return minItem;
-    }
 
-    public AnyType deleteMin() {
-
-        return null;
     }
 
     public boolean isEmpty() {
