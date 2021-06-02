@@ -38,7 +38,7 @@ public class LeftistHeap<AnyType extends Comparable<? super AnyType>> {
     }
 
     public AnyType findMin() {
-        return null;
+        return root.element;
     }
 
     public AnyType deleteMin() throws Exception {
