@@ -1,7 +1,7 @@
 package com.study.demo.sort;
 
 public class InsertionSort {
-    public static <AnyType extends Comparable<? super AnyType>> void insertionSort(AnyType[] a) {
+    public static <AnyType extends Comparable<? super AnyType>> AnyType[] insertionSort(AnyType[] a) {
         int j;
         for (int p = 0; p < a.length; p++) {
             AnyType tmp = a[p];
@@ -10,5 +10,6 @@ public class InsertionSort {
             }
             a[j] = tmp;
         }
+        return a;
     }
 }
