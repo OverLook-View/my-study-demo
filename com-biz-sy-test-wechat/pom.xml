@@ -362,5 +362,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.2.10</version>
+		</dependency>
+
 	</dependencies>
 </project>
