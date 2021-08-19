@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: springboot-activiti
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/activiti?useSSL=false&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  activiti:
+    database-schema-update: true
+    history-level: full
+    db-history-used: true
