@@ -41,7 +41,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <junit-version>4.12</junit-version>
-        <spring.version>4.3.14.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <quartz.version>2.2.1</quartz.version>
     </properties>
 
